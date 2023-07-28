@@ -57,10 +57,7 @@ func main() {
 ```go
 options := append(chromedp.DefaultExecAllocatorOptions[:],
   chromedp.Flag(`headless`, false),
-  chromedp.DisableGPU,
-  chromedp.Flag(`disable-extensions`, false),
   chromedp.Flag(`enable-automation`, false),
-  chromedp.UserAgent(`Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36`),
 )
 
 allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), options...)
@@ -69,4 +66,12 @@ defer cancel()
 ctx, cancel := chromedp.NewContext(allocCtx)
 defer cancel()
 ```
-## Disable headless mode
+## Sleep
+```go
+if err := chromedp.Run(ctx, chromedp.Tasks{
+        chromedp.Navigate(pageURL),
+		chromedp.Sleep(5 * time.Second)
+    }); err != nil {
+        panic(err)
+    }
+```
