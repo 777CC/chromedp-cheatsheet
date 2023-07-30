@@ -53,6 +53,16 @@ func main() {
 }
 ```
 ## Open new tab
+```go
+clone, cancel := chromedp.NewContext(ctx)
+        defer cancel()
+        fmt.Printf("%s is opening in a new tab\n", url)
+
+        if err := chromedp.Run(clone, chromedp.Navigate(url)); err != nil {
+            // do something nice with you errors!
+            panic(err)
+        }
+```
 ## Disable headless mode
 ```go
 options := append(chromedp.DefaultExecAllocatorOptions[:],
@@ -75,3 +85,5 @@ if err := chromedp.Run(ctx, chromedp.Tasks{
         panic(err)
     }
 ```
+
+## Check if element exists
