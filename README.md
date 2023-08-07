@@ -87,3 +87,7 @@ if err := chromedp.Run(ctx, chromedp.Tasks{
 ```
 
 ## Check if element exists
+
+## Download image
+
+## Select dropdown
